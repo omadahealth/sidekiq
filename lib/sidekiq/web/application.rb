@@ -258,7 +258,7 @@ module Sidekiq
 
     def call(env)
       action = self.class.match(env)
-      return NOT_FOUND unless action
+      return NOT_FOUND.deep_dup unless action
 
       resp = catch(:halt) do
         app = @klass
